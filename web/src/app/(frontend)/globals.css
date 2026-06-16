@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+/*
+  Brand system from the official CIC Georgia guidelines (პრეზენტაცია):
+  - Type: bold rounded sans for display + body (Bezier Sans), grotesk for fine print
+    (Aktiv Grotesk). All sans — no serif. We approximate with Noto Sans Georgian
+    (full Georgian + Latin coverage) across weights.
+  - Palette: indigo navy, slate blue, brick red, pale yellow, off-white, near-black.
+*/
+@theme {
+  /* Neutrals (cool off-white from palette swatch) */
+  --color-ink: #1f2547;
+  --color-muted: #5c6473;
+  --color-surface: #ffffff;
+  --color-paper: #f1f2f2;
+  --color-subtle: #e9eaec;
+  --color-border: #dedfe3;
+
+  /* Indigo navy — primary brand colour */
+  --color-navy-50: #eef0f8;
+  --color-navy-100: #d4daee;
+  --color-navy-300: #97a2c8;
+  --color-navy-500: #5c6e8f; /* slate blue (palette swatch 2) */
+  --color-navy-700: #2e3a7e; /* primary indigo (palette swatch 1) */
+  --color-navy-800: #28316b;
+  --color-navy-900: #1e2552;
+
+  /* Cambridge red — brighter crimson (preferred over the muted brick) */
+  --color-red-400: #c0334d;
+  --color-red-500: #a8203c;
+  --color-red-600: #931a33;
+  --color-red-700: #7a1529;
+
+  /* Pale yellow accent (palette swatch 4) */
+  --color-cream: #ece9a6;
+  --color-cream-soft: #f4f2cf;
+
+  /* Typography — all sans */
+  --font-sans: var(--font-noto-sans-georgian), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-noto-sans-georgian), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii */
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headings: bold sans (Bezier Sans intent), tight tracking. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Indigo hero backdrop with a brick-red glow (referance3 / Facebook cover). */
+.bg-hero {
+  background:
+    radial-gradient(75% 90% at 82% 10%, rgba(156, 43, 48, 0.30) 0%, transparent 55%),
+    radial-gradient(80% 80% at 0% 100%, rgba(92, 110, 143, 0.45) 0%, transparent 60%),
+    linear-gradient(155deg, #2e3a7e 0%, #28316b 55%, #1e2552 100%);
+}
+
+.bg-red-cta {
+  background: linear-gradient(180deg, var(--color-red-500) 0%, var(--color-red-600) 100%);
+}
+
+.bg-navy-cta {
+  background: var(--color-navy-700);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

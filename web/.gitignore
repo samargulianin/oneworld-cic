@@ -1,0 +1,11 @@
+node_modules
+.next
+/build
+/dist
+.env
+*.db
+*.db-shm
+*.db-wal
+.DS_Store
+/src/app/(payload)/admin/importMap.js
+next-env.d.ts

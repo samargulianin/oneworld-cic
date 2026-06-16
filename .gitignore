@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Env / secrets (web app has its own .gitignore too)
+.env
+.env.local
+*.local
+
+# Editor
+.vscode/
+.idea/
