@@ -55,3 +55,4 @@ Tailwind v4 with brand tokens in `src/app/(frontend)/globals.css` `@theme` (from
 
 ## Going to production
 Swap `sqliteAdapter` → `@payloadcms/db-postgres` (+ `DATABASE_URI`); set `SMTP_*`/`ENQUIRY_NOTIFY_TO` and Turnstile keys; set a strong `PAYLOAD_SECRET`; remove the `/seed` route (`src/app/seed/`).
+when creating form on the website always use build validation
