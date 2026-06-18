@@ -38,13 +38,13 @@ export async function Hero(props: HeroProps) {
   return (
     <section className="bg-hero relative overflow-hidden text-white">
       <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:gap-10">
-        <div className="flex flex-col items-start gap-6">
+        <div className="flex min-w-0 flex-col items-start gap-6">
           {props.eyebrow ? (
             <span className="inline-flex items-center rounded-full border border-white/40 px-4 py-1.5 text-sm font-medium tracking-wide text-white/90">
               {props.eyebrow}
             </span>
           ) : null}
-          <h1 className="text-4xl font-extrabold tracking-tight text-balance sm:text-5xl lg:text-[3.5rem] lg:leading-[1.04]">
+          <h1 className="text-4xl font-extrabold tracking-tight text-balance [overflow-wrap:anywhere] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.04]">
             <AccentHeading text={props.heading || ''} />
           </h1>
           {props.subheading ? (

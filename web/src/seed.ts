@@ -46,16 +46,20 @@ export async function seed() {
   }
 
   // 3. Header / Footer globals
-  await payload.updateGlobal({
+  // The nav array rows are NOT localized (only the `label` subfield is). So we
+  // create the rows once in `ka`, then update the SAME rows by id for `en` —
+  // otherwise the second update would recreate rows and clobber the ka labels.
+  const navItems = [
+    { ka: 'მიმართულებები', en: 'Fields', href: '#fields' },
+    { ka: 'როგორ მუშაობს', en: 'How it works', href: '#how-it-works' },
+    { ka: 'CIC-ის შესახებ', en: 'About CIC', href: '#about' },
+  ]
+  const seededHeader = await payload.updateGlobal({
     slug: 'header',
     locale: 'ka',
     data: {
       ctaLabel: 'გაიგეთ მეტი',
-      nav: [
-        { label: 'მიმართულებები', href: '#fields' },
-        { label: 'როგორ მუშაობს', href: '#how-it-works' },
-        { label: 'CIC-ის შესახებ', href: '#about' },
-      ],
+      nav: navItems.map((n) => ({ label: n.ka, href: n.href })),
     },
   })
   await payload.updateGlobal({
@@ -63,11 +67,11 @@ export async function seed() {
     locale: 'en',
     data: {
       ctaLabel: 'Enquire',
-      nav: [
-        { label: 'Fields', href: '#fields' },
-        { label: 'How it works', href: '#how-it-works' },
-        { label: 'About CIC', href: '#about' },
-      ],
+      nav: (seededHeader.nav || []).map((row, i) => ({
+        id: row.id,
+        label: navItems[i].en,
+        href: navItems[i].href,
+      })),
     },
   })
 
