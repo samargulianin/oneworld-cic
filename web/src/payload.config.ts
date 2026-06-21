@@ -1,7 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import sharp from 'sharp'
@@ -54,9 +54,9 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  // Local dev: SQLite (zero external services). Production: swap to @payloadcms/db-postgres.
-  db: sqliteAdapter({
-    client: { url: process.env.DATABASE_URI || 'file:./oneworld.db' },
+  // Postgres (Neon). DATABASE_URI holds the pooled connection string.
+  db: postgresAdapter({
+    pool: { connectionString: process.env.DATABASE_URI },
   }),
   ...(email ? { email } : {}),
   sharp,

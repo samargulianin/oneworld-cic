@@ -15,6 +15,7 @@
     "seed": "payload run ./src/seed.ts"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.85.1",
     "@payloadcms/db-sqlite": "3.85.1",
     "@payloadcms/email-nodemailer": "3.85.1",
     "@payloadcms/next": "3.85.1",

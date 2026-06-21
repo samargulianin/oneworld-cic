@@ -25,9 +25,13 @@ export async function Header({ locale }: { locale: Locale }) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-navy-900/80 lg:flex">
+        <nav className="hidden items-center gap-1 rounded-full bg-navy-900/[0.04] p-1 text-sm font-medium text-navy-900/70 lg:flex">
           {nav.map((item, i) => (
-            <a key={i} href={item.href || '#'} className="transition hover:text-red-600">
+            <a
+              key={i}
+              href={item.href || '#'}
+              className="rounded-full px-4 py-1.5 transition-colors duration-150 hover:bg-navy-700 hover:text-white"
+            >
               {item.label}
             </a>
           ))}
