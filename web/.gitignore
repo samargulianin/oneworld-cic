@@ -9,5 +9,4 @@ node_modules
 *.db-shm
 *.db-wal
 .DS_Store
-/src/app/(payload)/admin/importMap.js
 next-env.d.ts
