@@ -53,6 +53,10 @@ Tailwind v4 with brand tokens in `src/app/(frontend)/globals.css` `@theme` (from
 
 - **Hero red-accent convention:** wrap a word in the hero `heading` with `*asterisks*` (e.g. `170+ *distance* programmes`) and `Hero.tsx`'s `AccentHeading` renders that span in red. The logo lives at `public/logo-mark.png` (transparent-bg crest).
 
+## Deploying (Railway)
+
+The `build` script is `payload generate:importmap && next build` (not just `next build`). This is deliberate: `src/app/(payload)/admin/importMap.js` is imported by the admin layout/pages, and Railway's cached `copy / /app` layer kept serving a build context *without* it, failing with `Can't resolve '../importMap.js'` even though the file is committed. Regenerating it at the start of the build writes it fresh into the build context, so the import always resolves regardless of cache state. `generate:importmap` only instantiates the config (no DB connection) but reads `PAYLOAD_SECRET`/`DATABASE_URI` — these must be available as Railway **build-time** variables.
+
 ## Going to production
 Swap `sqliteAdapter` → `@payloadcms/db-postgres` (+ `DATABASE_URI`); set `SMTP_*`/`ENQUIRY_NOTIFY_TO` and Turnstile keys; set a strong `PAYLOAD_SECRET`; remove the `/seed` route (`src/app/seed/`).
 when creating form on the website always use build validation
